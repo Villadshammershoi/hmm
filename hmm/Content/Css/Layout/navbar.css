@@ -1,0 +1,86 @@
+﻿.offerend-navbar {
+    position: absolute;
+    left: -260px;
+    transition: 1s ease-in-out;
+    top: 230px;
+    width: 260px;
+    height: 210px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: #fff;
+}
+
+.navbar-check,
+.login-check {
+    display: none;
+}
+
+    .navbar-check + label {
+        color: #fff;
+        font-size: 40px;
+        font-family: 300;
+        float: left;
+        margin-left: 15px;
+        line-height: 50px;
+    }
+
+    .navbar-check:checked + label:before,
+    .login-check:checked + label:before {
+        content: "\ea0f";
+    }
+
+    .navbar-check:checked ~ .offerend-navbar {
+        transition: 1s ease-in-out;
+        top: 230px;
+        left: 0;
+    }
+
+.offerend-navbar ul li {
+    margin: 20px;
+    transition: .1s ease-in-out;
+}
+
+    .offerend-navbar ul li a {
+        font-size: 24px;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+    }
+
+    .offerend-navbar ul li:hover {
+        padding-left: 10px;
+    }
+
+    .offerend-navbar ul li span {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+
+/*login*/
+.offerend-login {
+    position: absolute;
+    right: -280px;
+    transition: 1s ease-in-out;
+    top: 230px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    color: #fff;
+}
+
+.login-check + label {
+    color: #fff;
+    font-size: 40px;
+    font-family: 300;
+    float: left;
+    margin-right: 15px;
+    line-height: 50px;
+}
+
+.login-check:checked ~ .offerend-login {
+    transition: 1s ease-in-out;
+    top: 230px;
+    right: 0;
+}

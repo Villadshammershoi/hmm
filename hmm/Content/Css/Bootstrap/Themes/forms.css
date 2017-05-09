@@ -1,0 +1,27 @@
+﻿/* BOOTSTRAP BUTTON THEME */
+
+form {
+    margin-top: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+    form p {
+        color: #fff;
+        padding: 15px;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    form a {
+        color: #18b2a9;
+    }
+
+        form a:hover, form a:focus {
+            color: #149189;
+            text-decoration: none;
+        }
+
+label {
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

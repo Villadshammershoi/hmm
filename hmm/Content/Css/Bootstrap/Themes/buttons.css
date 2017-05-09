@@ -1,0 +1,15 @@
+﻿/* BOOTSTRAP BUTTON THEME */
+
+.btn-primary {
+    background-color: #18b2a9;
+    border-color: #149189;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active, 
+.open .dropdown-toggle.btn-primary {
+    background-color: #149189;
+    border-color: #117d76;
+}

@@ -1,0 +1,17 @@
+﻿body {
+    overflow: hidden;
+}
+
+.cover-container {
+    background-image: url('/Content/images/cover-background.jpg');
+    background-repeat: no-repeat;
+    height: 800px;
+    background-size: cover;
+    text-align: center;
+}
+
+.cover-container .container h2 {
+    font-size: 45px;
+    color: #fff;
+    margin-top: 75px;
+}
