@@ -3,8 +3,6 @@
     left: -260px;
     transition: 1s ease-in-out;
     top: 230px;
-    width: 260px;
-    height: 210px;
     background-color: rgba(0, 0, 0, 0.3);
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
@@ -83,4 +81,13 @@
     transition: 1s ease-in-out;
     top: 230px;
     right: 0;
+}
+
+.offerend-login .alert-danger {
+    background-color: transparent;
+    border: transparent;
+    padding: 0;
+    margin-top: 8px;
+    font-size: 18px;
+    color: #18b2a9;
 }

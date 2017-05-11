@@ -227,6 +227,8 @@
     <Content Include="Scripts\Angular\angular.js" />
     <Content Include="Scripts\Angular\angular.min.js" />
     <Content Include="Scripts\Angular\Default\app.js" />
+    <Content Include="Scripts\Angular\Default\Controllers\appsman.js" />
+    <Content Include="Scripts\Angular\Default\Directives\passwordMatch.js" />
     <Content Include="Scripts\Angular\Login\Controllers\LoginRegisterController.js" />
     <Content Include="Scripts\Angular\Login\app.js" />
     <Content Include="Scripts\Angular\ui-bootstrap-tpls.js" />
@@ -287,7 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Angular\Default\Controllers\" />
     <Folder Include="Views\api\" />
   </ItemGroup>
   <ItemGroup>
