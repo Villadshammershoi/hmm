@@ -15,10 +15,10 @@
                     controllerAs: '$ctrl',
                 });
 
-                $http.post('../Account/Register?username=' + $scope.createAccount.username + '&password=' + $scope.createAccount.password + '&repeatPassword=' + $scope.createAccount.repeatPassword + '&email=' + $scope.createAccount.email + '&repeatEmail=' + $scope.createAccount.repeatEmail)
+                $http.post('../Account/Register?username=' + $scope.createAccount.username + '&password=' + $scope.createAccount.password + '&confirmPassword=' + $scope.createAccount.confirmPassword + '&email=' + $scope.createAccount.email + '&confirmEmail=' + $scope.createAccount.confirmEmail)
                     .then(function (data, headers, status) {
-                        if (!!data && data.Success == true) {   
-                            $scope.createAccount.registerSuccessMessage = "Account successfully created!";
+                        createAccount.registerSuccessMessage = "Account successfully created!";
+                        if (!!data && data.Success == true) {
                             alert("you did it, your form is working!");
                         }
 
@@ -61,9 +61,7 @@
 
         $ctrl.ok = function () {
             $uibModalInstance.close();
-        };
-        $ctrl.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
+            
         };
     }]);
 })(angular);

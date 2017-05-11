@@ -147,17 +147,17 @@ namespace hmm.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public JsonResult Register(string username, string password, string repeatPassword, string email, string repeatEmail, string validationMessage, string registerSuccessMessage)
+        public JsonResult Register(string username, string password, string confirmPassword, string email, string confirmEmail, string validationMessage, string registerSuccessMessage)
         {
 
             if (ModelState.IsValid)
             {
-                if (password != repeatPassword)
+                if (password != confirmPassword)
                 {
                     return Json(new response() { Success = false, ValidationMessage = "Password do not match" });
                 }
 
-                if (email != repeatEmail)
+                if (email != confirmEmail)
                 {
                     return Json(new response() { Success = false, ValidationMessage = "Emails do not match" });
                 }

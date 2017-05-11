@@ -15,7 +15,7 @@ namespace hmm.Controllers
         }
 
         [HttpPost]
-        public ActionResult OfferendUser(string username, string password, string repeatPassword, string email, string repeatEmail, string validationMessage, string registerSuccessMessage)
+        public ActionResult OfferendUser(string username, string password, string confirmPassword, string email, string confirmEmail, string validationMessage, string registerSuccessMessage)
         {
             return View();
         }
