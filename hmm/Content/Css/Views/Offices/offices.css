@@ -1,0 +1,102 @@
+﻿.offerend-explore-office-view {
+    margin-top: 75px;
+}
+
+.office-container {
+    perspective: 500px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+    .office-container .office-box {
+        top: 0;
+    }
+
+.office-container, .office-image, .office-info {
+    overflow: hidden;
+}
+
+.office-box {
+    transition: .6s;
+    position: relative;
+    overflow: hidden;
+}
+
+.office-image {
+    background: url('/Content/images/offices/home-office-2-582x379.jpg') 0 0 no-repeat;
+    border-radius: 6px;
+    position: relative;
+    transition: .4s ease-in-out;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 338px;
+    min-height: 380px;
+    border: 1px solid #18b2a9;
+}
+
+.office-box:hover .office-image {
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+}
+
+.office-box:hover .office-info {
+    top: 0;
+    opacity: 1;
+}
+
+.office-info {
+    position: absolute;
+    top: -100%;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    padding: 15px;
+    background-color: rgba(24, 178, 169, 0.8);
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    .office-info h2 {
+        margin-top: 10px;
+    }
+
+    .office-info p {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+        .office-info p:first-of-type {
+            font-size: 20px;
+        }
+
+    .office-info a {
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+/*search*/
+.form-group .input-group-addon {
+    background-color: #18b2a9;
+    border: 1px solid #149189;
+    color: #fff;
+}
+
+.form-group .input-group input {
+    font-size: 18px;
+    padding: 20px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-left: none;
+}
+
+    .form-group .input-group input:focus {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        border-left: none;
+    }

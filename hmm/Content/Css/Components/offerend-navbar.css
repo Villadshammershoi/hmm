@@ -1,0 +1,355 @@
+﻿.offerend-layout {
+    padding-bottom: 60px;
+}
+
+.navbar-check:checked ~ .offerend-layout {
+    overflow:hidden;
+}
+
+.navbar-overlay,
+.login-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 60px;
+    background-color: rgba(0, 0, 0, 0.35);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+    backface-visibility: hidden;
+    -webkit-transition: opacity 0.4s 0s, visibility 0s 0.4s;
+    -moz-transition: opacity 0.4s 0s, visibility 0s 0.4s;
+    transition: opacity 0.4s 0s, visibility 0s 0.4s;
+}
+
+.navbar-check:checked ~ .navbar-overlay {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.4s;
+    -moz-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+}
+
+.offerend-navbar {
+    position: absolute;
+    left: -50%;
+    transition: .4s ease-in-out;
+    top: 60px;
+    z-index: 5;
+    background-color: #ffffff;
+    color: #fff;
+    height: calc((100vh - 60px)/1);
+    width: 50%;
+    box-shadow: 0px 0px 3px 0px #146762;
+}
+
+.navbar-check,
+.login-check {
+    display: none;
+}
+
+    .navbar-check + label {
+        height: 55px;
+        float: left;
+        cursor: pointer;
+    }
+
+        .navbar-check + label span {
+            background-color: #fff;
+            float: left;
+            margin-left: 15px;
+            line-height: 50px;
+            text-indent: 100%;
+            margin-left: 35px;
+            margin-top: 30px;
+            -webkit-transform: translateX(0) translateY(-50%);
+            -moz-transform: translateX(0) translateY(-50%);
+            -ms-transform: translateX(0) translateY(-50%);
+            -o-transform: translateX(0) translateY(-50%);
+            transform: translateX(0) translateY(-50%);
+            width: 42px;
+            height: 5px;
+            -webkit-transition: -webkit-transform .2s;
+            -moz-transition: -moz-transform .2s;
+            transition: transform .2s;
+        }
+
+            .navbar-check + label span:before,
+            .navbar-check + label span:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: inherit;
+                -webkit-transform: translateZ(0);
+                -moz-transform: translateZ(0);
+                -ms-transform: translateZ(0);
+                -o-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transition: -webkit-transform .2s, width 2.2s;
+                -moz-transition: -moz-transform .2s, width .2s;
+                transition: transform .2s, width .2s;
+            }
+
+            .navbar-check + label span:before {
+                -webkit-transform-origin: right top;
+                -moz-transform-origin: right top;
+                -ms-transform-origin: right top;
+                -o-transform-origin: right top;
+                transform-origin: right top;
+                -webkit-transform: translateY(-10px);
+                -moz-transform: translateY(-10px);
+                -ms-transform: translateY(-10px);
+                -o-transform: translateY(-10px);
+                transform: translateY(-10px);
+            }
+
+            .navbar-check + label span:after {
+                -webkit-transform-origin: right bottom;
+                -moz-transform-origin: right bottom;
+                -ms-transform-origin: right bottom;
+                -o-transform-origin: right bottom;
+                transform-origin: right bottom;
+                -webkit-transform: translateY(10px);
+                -moz-transform: translateY(10px);
+                -ms-transform: translateY(10px);
+                -o-transform: translateY(10px);
+                transform: translateY(10px);
+            }
+
+        .navbar-check + label:hover span:before,
+        .navbar-check + label:hover span:after {
+            width: 55%;
+        }
+
+        .navbar-check + label:hover span {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+            .navbar-check + label:hover span:before {
+                transform: translateX(-29px) translateY(3px) rotate(-135deg);
+                -webkit-transform: translateX(-44px) translateY(3px) rotate(-135deg);
+                -moz-transform: translateX(-44px) translateY(3px) rotate(-135deg);
+                -ms-transform: translateX(-44px) translateY(3px) rotate(-135deg);
+                -o-transform: translateX(-44px) translateY(3px) rotate(-135deg);
+            }
+
+            .navbar-check + label:hover span:after {
+                -webkit-transform: translateX(-45px) translateY(-3px) rotate(135deg);
+                -moz-transform: translateX(-45px) translateY(-3px) rotate(135deg);
+                -ms-transform: translateX(-45px) translateY(-3px) rotate(135deg);
+                -o-transform: translateX(-45px) translateY(-3px) rotate(135deg);
+                transform: translateX(-45px) translateY(-3px) rotate(135deg);
+            }
+
+    .navbar-check:checked + label:hover span {
+        -webkit-transform: rotate(-180deg);
+        -moz-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        -o-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+
+        .navbar-check:checked + label:hover span:before {
+            transform: translateX(0px) translateY(-1px) rotate(-45deg);
+            -webkit-transform: translateX(0px) translateY(-1px) rotate(-45deg);
+            -moz-transform: translateX(0px) translateY(-1px) rotate(-45deg);
+            -ms-transform: translateX(0px) translateY(-1px) rotate(-45deg);
+            -o-transform: translateX(0px) translateY(-1px) rotate(-45deg);
+        }
+
+        .navbar-check:checked + label:hover span:after {
+            -webkit-transform: translateX(0px) translateY(1px) rotate(45deg);
+            -moz-transform: translateX(0px) translateY(1px) rotate(45deg);
+            -ms-transform: translateX(0px) translateY(1px) rotate(45deg);
+            -o-transform: translateX(0px) translateY(1px) rotate(45deg);
+            transform: translateX(0px) translateY(1px) rotate(45deg);
+        }
+
+
+
+    .navbar-check:checked ~ .offerend-navbar {
+        width: 50%;
+        top: 60px;
+        left: 0;
+    }
+
+.offerend-navbar ul li {
+    transition: .1s ease-in-out;
+    float: left;
+    height: 50%;
+    height: calc((100vh - 59px)/2);
+    border: 1px solid rgba(36, 160, 145, 0.20);
+    border-top: none;
+    border-left: none;
+}
+
+    .offerend-navbar ul li:first-of-type {
+        border-right-width: 1px;
+    }
+
+    .offerend-navbar ul li:nth-of-type(3) {
+        border-right-width: 1px;
+    }
+
+    .offerend-navbar ul li:first-of-type:hover {
+        background-color: rgb(87, 86, 178);
+    }
+
+    .offerend-navbar ul li:nth-of-type(2):hover {
+        background-color: rgb(178, 86, 97);
+    }
+
+    .offerend-navbar ul li:nth-of-type(3):hover {
+        background-color: rgb(86, 164, 178);
+    }
+
+    .offerend-navbar ul li:last-of-type:hover {
+        background-color: rgb(178, 131, 86);
+    }
+
+    .offerend-navbar ul li a {
+        position: relative;
+        display: block;
+        color: #18b2a9;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    .offerend-navbar ul li:hover a {
+        color: #fff;
+    }
+
+    .offerend-navbar ul li div {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 24px;
+        margin-right: 10px;
+        top: calc(50% - 48px);
+        position: absolute;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+        width: 100%;
+    }
+
+        .offerend-navbar ul li div:before {
+            font-family: 'offerend';
+            display: block;
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+    .offerend-navbar ul li a:hover div:before {
+        animation: twist .5s ease-in-out;
+    }
+
+@keyframes twist {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(25deg);
+    }
+
+    40% {
+        transform: rotate(-50deg);
+    }
+
+    60% {
+        transform: rotate(15deg);
+    }
+
+    80% {
+        transform: rotate(-30deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/*login*/
+.offerend-login {
+    position: fixed;
+    right: 0;
+    transition: .4s ease-in-out;
+    top: -100%;
+    background-color: #f6f6f6;
+    color: #18b2a9;
+    height: calc((100vh - 60px)/1);
+    width: 50%;
+    z-index: 5;
+    box-shadow: 0px 0px 3px 0px #146762;
+}
+
+.login-check:checked ~ .login-overlay {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.6s 0s, visibility 0s 0s;
+    -moz-transition: opacity 0.6s 0s, visibility 0s 0s;
+    transition: opacity 0.6s 0s, visibility 0s 0s;
+}
+
+.login-check + label {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 24px;
+    float: left;
+    margin-right: 15px;
+    line-height: 50px;
+    cursor: pointer;
+    margin-right: 40px;
+    line-height: 55px;
+}
+
+    .login-check + label:before {
+        font-family: 'offerend';
+        font-size: 40px;
+        float: left;
+        margin-right: 15px;
+        line-height: 50px;
+    }
+
+.login-check:checked ~ .offerend-login {
+    width: 50%;
+    top: 60px;
+    right: 0;
+}
+
+@media screen and (max-width: 991px) {
+    .offerend-navbar ul li {
+        height: calc((52vh - 50px)/2);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .offerend-navbar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .navbar-check:checked ~ .offerend-navbar {
+        width: 100%;
+    }
+
+    .offerend-login {
+        width: 100%; 
+    }
+
+    .login-check:checked ~ .offerend-login {
+        width: 100%;
+    }
+}

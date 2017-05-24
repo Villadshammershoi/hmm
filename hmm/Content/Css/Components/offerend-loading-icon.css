@@ -1,0 +1,169 @@
+﻿.offerend-loading-container {
+    position: relative;
+    width: 222px;
+    height: 27px;
+    margin: auto;
+}
+
+.offerend-loading-ball {
+    position: absolute;
+    top: 0;
+    background-color: rgb(24,178,168);
+    width: 27px;
+    height: 27px;
+    -o-animation-name: offerend-loader;
+    -webkit-animation-name: offerend-loader;
+    -moz-animation-name: offerend-loader;
+    animation-name: offerend-loader;
+    -o-animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -o-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -o-animation-direction: normal;
+    -webkit-animation-direction: normal;
+    -moz-animation-direction: normal;
+    animation-direction: normal;
+    -o-transform: scale(.3);
+    -ms-transform: scale(.3);
+    -webkit-transform: scale(.3);
+    -moz-transform: scale(.3);
+    transform: scale(.3);
+    border-radius: 18px;
+}
+
+    .offerend-loading-ball:nth-child(1) {
+        left: 0;
+        -o-animation-delay: 0s;
+        -webkit-animation-delay: 0s;
+        -moz-animation-delay: 0s;
+        animation-delay: 0s;
+    }
+
+    .offerend-loading-ball:nth-child(2) {
+        left: 28px;
+        -o-animation-delay: 0.15s;
+        -webkit-animation-delay: 0.15s;
+        -moz-animation-delay: 0.15s;
+        animation-delay: 0.15s;
+    }
+
+    .offerend-loading-ball:nth-child(3) {
+        left: 55px;
+        -o-animation-delay: 0.3s;
+        -webkit-animation-delay: 0.3s;
+        -moz-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+
+    .offerend-loading-ball:nth-child(4) {
+        left: 83px;
+        -o-animation-delay: .45s;
+        -webkit-animation-delay: .45s;
+        -moz-animation-delay: .45s;
+        animation-delay: .45s;
+    }
+
+    .offerend-loading-ball:nth-child(5) {
+        left: 111px;
+        -o-animation-delay: .6s;
+        -webkit-animation-delay: .6s;
+        -moz-animation-delay: 1.2s;
+        animation-delay: .6s;
+    }
+
+    .offerend-loading-ball:nth-child(6) {
+        left: 139px;
+        -o-animation-delay: .75s;
+        -webkit-animation-delay: .75s;
+        -moz-animation-delay: .75s;
+        animation-delay: .75s;
+    }
+
+    .offerend-loading-ball:nth-child(7) {
+        left: 166px;
+        -o-animation-delay: .9s;
+        -webkit-animation-delay: .9s;
+        -moz-animation-delay: .9s;
+        animation-delay: .9s;
+    }
+
+    .offerend-loading-ball:nth-child(8) {
+        left: 194px;
+        -o-animation-delay: 1.04s;
+        -webkit-animation-delay: 1.04s;
+        -moz-animation-delay: 1.04s;
+        animation-delay: 1.04s;
+    }
+
+
+@keyframes offerend-loader {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        background-color: rgb(24,178,168);
+    }
+
+    100% {
+        -moz-transform: scale(.3);
+        -ms-transform: scale(.3);
+        -o-transform: scale(.3);
+        -webkit-transform: scale(.3);
+        transform: scale(.3);
+        background-color: rgba(246,246,246,0.97);
+    }
+}
+
+/*@-o-keyframes offerend-loader {
+    0% {
+        -o-transform: scale(1);
+        background-color: rgb(24,178,168);
+    }
+
+    100% {
+        -o-transform: scale(.3);
+        background-color: rgba(246,246,246,0.97);
+    }
+}
+
+@-ms-keyframes offerend-loader {
+    0% {
+        -ms-transform: scale(1);
+        background-color: rgb(24,178,168);
+    }
+
+    100% {
+        -ms-transform: scale(.3);
+        background-color: rgba(246,246,246,0.97);
+    }
+}
+
+@-webkit-keyframes offerend-loader {
+    0% {
+        -webkit-transform: scale(1);
+        background-color: rgb(24,178,168);
+    }
+
+    100% {
+        -webkit-transform: scale(.3);
+        background-color: rgba(246,246,246,0.97);
+    }
+}
+
+@-moz-keyframes offerend-loader {
+    0% {
+        -moz-transform: scale(1);
+        background-color: rgb(24,178,168);
+    }
+
+    100% {
+        -moz-transform: scale(.3);
+        background-color: rgba(246,246,246,0.97);
+    }
+}*/

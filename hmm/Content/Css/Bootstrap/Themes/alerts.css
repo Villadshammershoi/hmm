@@ -1,0 +1,13 @@
+﻿/* BOOTSTRAP ALERT THEME */
+.alert {
+    
+    padding: 0 0 10px 0;
+}
+
+.alert-danger {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #18b2a9;
+    background-color: transparent;
+    border: transparent;
+}

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/Css/Views/offices")
+
+@Scripts.Render("~/bundles/Scripts/Apps/Default/Services/OfficeService",
+    "~/bundles/Scripts/Apps/OfficeController")
+
+
+
+
+
+<div class="offerend-explore-office-view" ng-controller="OfficeController">
+    <div class="container">
+        <h2>Explore offices</h2>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="offerend-search input-group-addon"></div>
+                <input type="text" class="form-control" placeholder="Search offices" ng-model="searchOffices" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="office-container col-md-4 col-sm-6 col-xs-12" ng-repeat="o in Offices | filter:searchOffices">
+                <div class="office-box">
+                    <div class="office-image">
+                    </div>
+                    <div class="office-info">
+                        <h2><strong>{{o.Title}}</strong></h2>
+                        <p>Description:<br /> <strong>{{o.Description}}</strong></p><br />
+                        <p>Rent:<br /> <strong>800$/month</strong></p>
+                        <p>Number of employees available:<br /> <strong>{{o.NumberOfEmployees}}</strong></p>
+                        <p ng-show="o.Relation.length > 1">Relation:<br /> <strong>{{o.Relation}}</strong></p>
+                        <p ng-show="o.Interest.length">Interest:<br /> <strong>{{o.Interest}}</strong></p>
+                        <div class="text-center">
+                            <a class="btn btn-warning btn-lg" href="">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

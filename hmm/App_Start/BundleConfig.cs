@@ -9,44 +9,116 @@ namespace hmm
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-            //Bootstrap > Bundle
+            // --------------------------
+            // - STYLE > LIB            -
+            // --------------------------
+
+            // Lib > Bootstrap
             bundles.Add(new StyleBundle("~/Content/Bootstrap").Include(
-                      "~/Content/bootstrap.min.css"));
+                      "~/Content/Css/Lib/bootstrap.min.css"));
 
-            //Content > Layout
-            bundles.Add(new StyleBundle("~/Content/Css/Layout").Include(
-                      "~/Content/Css/Layout/layout.css",
-                      "~/Content/Css/Layout/navbar.css",
-                      "~/Content/Css/Icons/offerend-font.css"));
+            // --------------------------
+            // - STYLE > COMPONENTS     -
+            // --------------------------
 
-            //Content > Themes
+            // Components > OfferendNavbar
+            bundles.Add(new StyleBundle("~/Content/Css/Components").Include(
+                      "~/Content/Css/Components/offerend-navbar.css",
+                      "~/Content/Css/Icons/offerend-font.css",
+                      "~/Content/Css/Components/offerend-loading-icon.css"));
+
+
+            // --------------------------
+            // - STYLE > THEMES         -
+            // --------------------------
+
             bundles.Add(new StyleBundle("~/Content/Css/Themes").Include(
                       "~/Content/Css/Bootstrap/Themes/forms.css",
-                      "~/Content/Css/Bootstrap/Themes/buttons.css"));
+                      "~/Content/Css/Bootstrap/Themes/buttons.css",
+                      "~/Content/Css/Bootstrap/Themes/alerts.css",
+                      "~/Content/Css/Bootstrap/Themes/navbar.css"));
+            
+
+            // --------------------------
+            // - STYLE > VIEWS          -
+            // --------------------------
+
+            //Views > Offices
+            bundles.Add(new StyleBundle("~/Content/Css/Views/offices").Include(
+                      "~/Content/Css/Views/Offices/offices.css"));
+
+            //Views > MyOffices
+            bundles.Add(new StyleBundle("~/Content/Css/Views/myOffices").Include(
+                      "~/Content/Css/Views/MyOffices/my-offices.css"));
 
 
 
 
+            // --------------------------
+            // - SCRIPTS > LIB          -
+            // --------------------------
 
-
-
-
-
-            //Scripts > Angular
+            //Lib > Angular + Angular-Boostrap + Angular-Animate
             bundles.Add(new ScriptBundle("~/bundles/Angular").Include(
-                        "~/Scripts/angular/angular.js",
-                        "~/Scripts/angular/ui-bootstrap-tpls.js",
-                        "~/Scripts/angular/angular-animate.js"));
+                        "~/Scripts/Lib/angular.js",
+                        "~/Scripts/Lib/ui-bootstrap-tpls.js",
+                        "~/Scripts/Lib/angular-animate.js"));
 
 
-            //Angular > Default
-            bundles.Add(new ScriptBundle("~/bundles/Default").Include(
-                        "~/Scripts/angular/Default/app.js"));
+            // --------------------------
+            // - SCRIPTS > APPS         -
+            // --------------------------
 
-            //Angular > LoginRegisterController
-            bundles.Add(new ScriptBundle("~/bundles/LoginRegisterController").Include(
-                        "~/Scripts/angular/Login/app.js",
-                        "~/Scripts/angular/Login/Controllers/LoginRegisterController.js"));
+            //Apps > Default
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default").Include(
+                        "~/Scripts/angular/Apps/Default/app.js"));
+
+            //Apps > Login
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/UserControllers").Include(
+                        "~/Scripts/angular/Apps/Login/app.js",
+                        "~/Scripts/angular/Apps/Login/Controllers/RegisterController.js",
+                        "~/Scripts/angular/Apps/Login/Controllers/LoginController.js"));
+
+            //Apps > Offices
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/OfficeController").Include(
+                        "~/Scripts/angular/Apps/Offices/app.js",
+                        "~/Scripts/angular/Apps/Offices/Controllers/OfficeController.js"));
+
+
+            // --------------------------
+            // - SCRIPTS > SERVICES     -
+            // --------------------------
+
+            //Angular > Default > Services > OfficeService
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Services/OfficeService").Include(
+                        "~/Scripts/angular/Apps/Default/Services/OfficeService.js"));
+
+            //Angular > Default > Services > LoginService
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Services/LoginService").Include(
+                        "~/Scripts/angular/Apps/Default/Services/LoginService.js"));
+
+
+            // --------------------------
+            // - SCRIPTS > DIRECTIVES   -
+            // --------------------------
+
+            //Angular > Default > Directives > CheckUsername
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Directives/CheckUsername").Include(
+                        "~/Scripts/angular/Apps/Default/Directives/CheckUsername.js"));
+
+            //Angular > Default > Directives > PasswordMatch
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Directives/PasswordMatch").Include(
+                        "~/Scripts/angular/Apps/Default/Directives/PasswordMatch.js"));
+
+            //Angular > Default > Directives > LoadingSpinner
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Directives/LoadingSpinner").Include(
+                        "~/Scripts/angular/Apps/Default/Directives/LoadingSpinner.js"));
+
+
+
+
+
+
 
 
 

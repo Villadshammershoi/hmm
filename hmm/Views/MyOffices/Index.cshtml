@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "My Offices";
+}
+
+@Styles.Render("~/Content/Css/Views/myOffices")
+
+@Scripts.Render("~/bundles/Scripts/Apps/OfficeController",
+    "~/bundles/Scripts/Apps/Default/Services/OfficeService")
+
+
+
+<div class="offerend-create-office-view" ng-controller="OfficeController as $ctrl">
+    <div class="container">
+        <form method="post" ng-cloak ng-model="offerendCreateOrUpdateOfficeForm" name="offerendCreateOrUpdateOfficeForm" id="offerendCreateOrUpdateOfficeForm" role="form" ng-submit="createOffice(offerendCreateOrUpdateOfficeForm.$valid)" novalidate>
+            <h2 class="text-center">Create an office</h2>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    @Html.Label("title", "Title")
+                    <input class="form-control" type="text" ng-model="CreateOrUpdateOffice.Title" name="Title" ng-minlength=10 ng-maxlength=50 required />
+                    <div class="alert alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.Title.$error.required">Title is required</div>
+                    <div class="alert alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.Title.$error.minlength">Title must be at least 10 characters</div>
+                    <div class="alert alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.Title.$error.maxlength">Title cannot contain more than 50 characters</div>
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("description", "Description")
+                    <input class="form-control" type="text" ng-model="CreateOrUpdateOffice.Description" name="Description" ng-minlength=10 ng-maxlength=150 required />
+                    <div class="alert alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.Description.$error.required">Description is required</div>
+                    <div class="alert alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.Description.$error.minlength">Description must be at least 10 characters - tell people about your office!</div>
+                    <div class="alert alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.Description.$error.maxlength">Description cannot contain more than 150 characters</div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("numberOfEmployees", "Number of employees")
+                    <input class="form-control" type="text" ng-model="CreateOrUpdateOffice.NumberOfEmployees" name="NumberOfEmployees" required />
+                    <div class="alet alert-danger" ng-show="offerendCreateOrUpdateOfficeForm.$submitted && offerendCreateOrUpdateOfficeForm.NumberOfEmployees.$error.required">Number of employees is required</div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("relation", "Relation")
+                    <input class="form-control" type="Text" ng-model="CreateOrUpdateOffice.Relation" name="Relation" />
+                </div>
+                <div class="form-group">
+                    @Html.Label("interest", "Interest")
+                    <input class="form-control" type="Text" ng-model="CreateOrUpdateOffice.Interest" name="Interest" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary" type="submit" name="createOrUpdateOffice">Create office</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="offerend-loading-gif" ng-model="loading" ng-show="offerendCreateOrUpdateOfficeForm.$submitted">
+
+    </div>
+
+    <script type="text/ng-template" id="ModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Office successfully created</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <h2>Your office has been created. Have a look around by clicking the "Explorer offices" button.</h2>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Ok!</button>
+            <a class="btn btn-warning" href="@Url.Action("Index", "Offices")">Explorer offices</a>
+        </div>
+    </script>
+</div>

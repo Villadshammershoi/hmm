@@ -80,3 +80,9 @@ c:\users\vill0237\documents\visual studio 2015\Projects\hmm\hmm\bin\Microsoft.Ow
 c:\users\vill0237\documents\visual studio 2015\Projects\hmm\hmm\obj\Debug\hmm.csprojResolveAssemblyReference.cache
 c:\users\vill0237\documents\visual studio 2015\Projects\hmm\hmm\obj\Debug\hmm.dll
 c:\users\vill0237\documents\visual studio 2015\Projects\hmm\hmm\obj\Debug\hmm.pdb
+C:\Users\vill0237\Documents\Visual Studio 2015\Projects\hmm\hmm\bin\System.Net.Http.Formatting.dll
+C:\Users\vill0237\Documents\Visual Studio 2015\Projects\hmm\hmm\bin\System.Web.Http.dll
+C:\Users\vill0237\Documents\Visual Studio 2015\Projects\hmm\hmm\bin\System.Web.Http.WebHost.dll
+C:\Users\vill0237\Documents\Visual Studio 2015\Projects\hmm\hmm\bin\System.Net.Http.Formatting.xml
+C:\Users\vill0237\Documents\Visual Studio 2015\Projects\hmm\hmm\bin\System.Web.Http.xml
+C:\Users\vill0237\Documents\Visual Studio 2015\Projects\hmm\hmm\bin\System.Web.Http.WebHost.xml

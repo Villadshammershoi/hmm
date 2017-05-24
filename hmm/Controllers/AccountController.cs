@@ -9,9 +9,50 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using hmm.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace hmm.Controllers
 {
+    public static class AntiForgeryExtension
+    {
+        public static string RequestVerificationToken(this HtmlHelper helper)
+        {
+            return String.Format("ncg-request-verification-token={0}", GetTokenHeaderValue());
+        }
+
+        private static string GetTokenHeaderValue()
+        {
+            string cookieToken, formToken;
+            System.Web.Helpers.AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            return cookieToken + ":" + formToken;
+        }
+    }
+
+    public class AntiForgeryValidate : System.Web.Http.Filters.ActionFilterAttribute
+    {
+        public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
+        {
+            string cookieToken = "";
+            string formToken = "";
+
+            IEnumerable<string> tokenHeaders;
+            if (actionContext.Request.Headers.TryGetValues("RequestVerificationToken", out tokenHeaders))
+            {
+                string[] tokens = tokenHeaders.First().Split(':');
+                if (tokens.Length == 2)
+                {
+                    cookieToken = tokens[0].Trim();
+                    formToken = tokens[1].Trim();
+                }
+            }
+            System.Web.Helpers.AntiForgery.Validate(cookieToken, formToken);
+
+            base.OnActionExecuting(actionContext);
+        }
+    }
+
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -65,7 +106,7 @@ namespace hmm.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        [AntiForgeryValidate]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -75,7 +116,7 @@ namespace hmm.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, false, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -83,7 +124,7 @@ namespace hmm.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl});
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -133,6 +174,7 @@ namespace hmm.Controllers
                     return View(model);
             }
         }
+
 
         //
         // GET: /Account/Register

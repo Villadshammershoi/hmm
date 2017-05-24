@@ -1,0 +1,23 @@
+﻿/* BOOTSTRAP NAVBAR THEME */
+.navbar-fixed-top, .navbar-fixed-bottom {
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-inverse {
+    background-color: #18b2a9;
+    border: none;
+    line-height: 50px;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+        font-size: 25px;
+        text-transform: uppercase;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        letter-spacing: 2px;
+        line-height: 60px;
+        padding: 0;
+    }
