@@ -2,8 +2,20 @@
     padding-bottom: 60px;
 }
 
+.offerend-logo:before {
+    color: #fff;
+    font-size: 50px;
+    text-decoration: none;
+    line-height: 60px
+}
+
+    .offerend-logo:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
 .navbar-check:checked ~ .offerend-layout {
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .navbar-overlay,
@@ -59,7 +71,6 @@
             float: left;
             margin-left: 15px;
             line-height: 50px;
-            text-indent: 100%;
             margin-left: 35px;
             margin-top: 30px;
             -webkit-transform: translateX(0) translateY(-50%);
@@ -346,7 +357,7 @@
     }
 
     .offerend-login {
-        width: 100%; 
+        width: 100%;
     }
 
     .login-check:checked ~ .offerend-login {

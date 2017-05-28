@@ -10,7 +10,7 @@
     "~/Content/Css/Themes",
     "~/Content/Css/Components")
 
-        @Scripts.Render("~/bundles/modernizr",
+    @Scripts.Render("~/bundles/modernizr",
     "~/bundles/Angular",
     "~/bundles/Scripts/Apps/Default",
 
@@ -21,7 +21,7 @@
     "~/bundles/Scripts/Apps/Default/Services/LoginService",
 
     "~/bundles/Scripts/Apps/UserControllers")
-        <script src="~/Scripts/Angular/Apps/Default/Directives/UserTokenDirective.js"></script>
+    <script src="~/Scripts/Angular/Apps/Default/Directives/UserTokenDirective.js"></script>
 </head>
 <body>
     <div class="offerend-layout-view">
@@ -30,7 +30,7 @@
                 <input class="navbar-check" type="checkbox" name="navbarCheck" id="navbarCheck" />
                 <label for="navbarCheck" class="navbar-check-label" ng-model="checkVal"><span></span></label>
                 <div class="navbar-overlay">
-                    
+
                 </div>
                 <div class="offerend-navbar">
                     <ul class="list-unstyled text-center">
@@ -39,6 +39,7 @@
                         <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "MyOffices", new { area = "" })"><div class="offerend-office">My offices</div></a></li>
                         <li class="col-md-6 col-xs-12"><a href=""><div class="offerend-question">How to</div></a></li>
                     </ul>
+                    <span class="offerend-logo"></span>
                 </div>
 
                 <p class="pull-right"></p>
@@ -49,7 +50,7 @@
                 <div class="offerend-login" ng-controller="LoginController" @Html.RequestVerificationToken()>
                     <div ng-cloak ng-show="form == 1">
                         <form method="post" ng-model="offerendLoginForm" name="offerendLoginForm" id="offerendLoginForm" role="form" ng-submit="loginAccount(offerendLoginForm.$valid)" novalidate>
-                            
+
                             <h2 class="text-center">Log in to your account</h2>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -66,12 +67,12 @@
                                         <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.password.$error.pattern">Password must be at least 6 characters, contain 1 capital letter, 1 number and 1 special character</div>
                                     </div>
                                     @*<div class="form-group">
-                                        @Html.Label("confirmPassword", "Confirm Password")
-                                        <input class="form-control" ng-model="loginData.confirmPassword" type="password" name="confirmPassword" required />
-                                        <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.confirmPassword.$error.matcher">
-                                            <div ng-show="offerendLoginForm.$submitted && offerendLoginForm.confirmPassword.$error.matcher">Passwords don't match</div>
-                                        </div>
-                                    </div>*@
+                                            @Html.Label("confirmPassword", "Confirm Password")
+                                            <input class="form-control" ng-model="loginData.confirmPassword" type="password" name="confirmPassword" required />
+                                            <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.confirmPassword.$error.matcher">
+                                                <div ng-show="offerendLoginForm.$submitted && offerendLoginForm.confirmPassword.$error.matcher">Passwords don't match</div>
+                                            </div>
+                                        </div>*@
                                     <div class="form-group">
                                         <button class="btn btn-lg btn-primary" type="submit" name="login">Log in</button>
                                     </div>
@@ -164,9 +165,7 @@
                 </div>
 
                 <div class="container">
-                    <div class="navbar-header">
-                        @Html.ActionLink("Offerend", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </div>
+                        <a class="offerend-logo" href="@Url.Action("Index", "Home")"></a>
                 </div>
             </div>
         </div>

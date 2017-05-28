@@ -226,6 +226,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Css\Bootstrap\Themes\test.svg" />
     <Content Include="Content\Css\Components\offerend-loading-icon.css" />
     <Content Include="Content\Css\Lib\bootstrap.css" />
     <Content Include="Content\Css\Lib\bootstrap.min.css" />
@@ -285,7 +286,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
