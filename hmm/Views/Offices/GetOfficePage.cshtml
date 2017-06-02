@@ -1,0 +1,27 @@
+﻿@model hmm.Models.Office
+
+@{
+    ViewBag.Title = "GetOfficePage";
+}
+
+@Scripts.Render("~/bundles/Scripts/Apps/Default/Services/OfficeService",
+    "~/bundles/Scripts/Apps/OfficeController")
+<div ng-controller="OfficeController">
+    <div class="office-container col-md-4 col-sm-6 col-xs-12" ng-repeat="office in currentOffice">
+                <div class="office-box">
+                    <div class="office-image">
+                    </div>
+                    <div class="office-info">
+                        <h2><strong>{{office.Title}}</strong></h2>
+                        <p>Description:<br /> <strong>{{Offices.Description}}</strong></p><br />
+                        <p>Rent:<br /> <strong>800$/month</strong></p>
+                        <p>Number of employees available:<br /> <strong>{{NumberOfEmployees}}</strong></p>
+                        <p ng-show="Relation.length > 1">Relation:<br /> <strong>{{Relation}}</strong></p>
+                        <p ng-show="Interest.length">Interest:<br /> <strong>{{Interest}}</strong></p>
+                        <div class="text-center">
+                            <a class="btn btn-warning btn-lg" href="/Offices/GetOfficePage/{{o.Id}}">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>

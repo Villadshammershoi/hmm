@@ -37,11 +37,15 @@ namespace hmm
                       "~/Content/Css/Bootstrap/Themes/buttons.css",
                       "~/Content/Css/Bootstrap/Themes/alerts.css",
                       "~/Content/Css/Bootstrap/Themes/navbar.css"));
-            
+
 
             // --------------------------
             // - STYLE > VIEWS          -
             // --------------------------
+
+            //Views > Home
+            bundles.Add(new StyleBundle("~/Content/Css/Views/Home").Include(
+                      "~/Content/Css/Views/Home/home.css"));
 
             //Views > Offices
             bundles.Add(new StyleBundle("~/Content/Css/Views/offices").Include(
@@ -50,6 +54,10 @@ namespace hmm
             //Views > MyOffices
             bundles.Add(new StyleBundle("~/Content/Css/Views/myOffices").Include(
                       "~/Content/Css/Views/MyOffices/my-offices.css"));
+
+            //Views > HowTo
+            bundles.Add(new StyleBundle("~/Content/Css/Views/HowTo").Include(
+                      "~/Content/Css/Views/HowTo/how-to.css"));
 
 
 
@@ -62,7 +70,8 @@ namespace hmm
             bundles.Add(new ScriptBundle("~/bundles/Angular").Include(
                         "~/Scripts/Lib/angular.js",
                         "~/Scripts/Lib/ui-bootstrap-tpls.js",
-                        "~/Scripts/Lib/angular-animate.js"));
+                        "~/Scripts/Lib/angular-animate.js",
+                        "~/Scripts/Lib/angular-route.min.js"));
 
 
             // --------------------------
@@ -83,6 +92,11 @@ namespace hmm
             bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/OfficeController").Include(
                         "~/Scripts/angular/Apps/Offices/app.js",
                         "~/Scripts/angular/Apps/Offices/Controllers/OfficeController.js"));
+
+            //Apps > Global
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/GlobalController").Include(
+                        "~/Scripts/angular/Apps/Global/app.js",
+                        "~/Scripts/angular/Apps/Global/Controllers/GlobalController.js"));
 
 
             // --------------------------
@@ -114,8 +128,8 @@ namespace hmm
             bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Directives/LoadingSpinner").Include(
                         "~/Scripts/angular/Apps/Default/Directives/LoadingSpinner.js"));
 
-
-
+            bundles.Add(new ScriptBundle("~/bundles/Scripts/Apps/Default/Directives/AngularTooltip").Include(
+                        "~/Scripts/angular/Apps/Default/Directives/AngularTooltip.js"));
 
 
 

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "ShowSelectedOffice";
+}
+
+@Scripts.Render("~/bundles/Scripts/Apps/Default/Services/OfficeService",
+    "~/bundles/Scripts/Apps/OfficeController")
+
+<h2>Fuckery</h2>
+
+<div ng-controller="OfficeController">
+    <div class="office-container col-md-4 col-sm-6 col-xs-12" ng-repeat="o in currentOffice">
+        <div class="office-box">
+            <div class="office-image">
+            </div>
+            <div class="office-info">
+                <h2><strong>{{o.Title}}</strong></h2>
+                <p>Description:<br /> <strong>{{o.Description}}</strong></p><br />
+                <p>Rent:<br /> <strong>800$/month</strong></p>
+                <p>Number of employees available:<br /> <strong>{{o.NumberOfEmployees}}</strong></p>
+                <p ng-show="o.Relation.length > 1">Relation:<br /> <strong>{{o.Relation}}</strong></p>
+                <p ng-show="o.Interest.length">Interest:<br /> <strong>{{o.Interest}}</strong></p>
+                <div class="text-center">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

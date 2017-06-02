@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace hmm.Controllers
 {
     [Route("my-offices")]
-    public class MyOfficesController : Controller
+    public class MyOfficesController : MasterController
     {
         // GET: MyOffices
         

@@ -210,7 +210,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HowToController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MyOfficesController.cs" />
     <Compile Include="Controllers\OfficesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -238,9 +240,14 @@
     <Content Include="Content\Css\Bootstrap\Themes\navbar.css" />
     <Content Include="Content\Css\Components\offerend-navbar.css" />
     <Content Include="Content\Css\Views\Home\home.css" />
+    <Content Include="Content\Css\Views\HowTo\how-to.css" />
     <Content Include="Content\Css\Views\MyOffices\my-offices.css" />
     <Content Include="Content\Css\Views\Offices\offices.css" />
+    <Content Include="Content\Css\Views\Shared\layout.css" />
+    <Content Include="Content\images\biz.jpg" />
     <Content Include="Content\images\cover-background.jpg" />
+    <Content Include="Content\images\howto-cover.jpg" />
+    <Content Include="Content\images\howto-cover.png" />
     <Content Include="Content\images\offices\20160118164234-interior-modern-office-desks-space-computers.jpeg" />
     <Content Include="Content\images\offices\download.jpg" />
     <Content Include="Content\images\offices\green-office-furniture-classic.jpg" />
@@ -250,11 +257,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Angular\Apps\Default\Directives\AngularTooltip.js" />
     <Content Include="Scripts\Angular\Apps\Default\Directives\CheckUsername.js" />
+    <Content Include="Scripts\Angular\Apps\Default\Directives\passwordVerify.js" />
     <Content Include="Scripts\Angular\Apps\Default\Directives\UserTokenDirective.js" />
     <Content Include="Scripts\Angular\Apps\Default\Services\LoginService.js" />
+    <Content Include="Scripts\Angular\Apps\Global\app.js" />
+    <Content Include="Scripts\Angular\Apps\Global\Controllers\GlobalController.js" />
     <Content Include="Scripts\Angular\Apps\Login\Controllers\LoginController.js" />
     <Content Include="Scripts\Lib\angular-animate.js" />
+    <Content Include="Scripts\Lib\angular-route.min.js" />
     <Content Include="Scripts\Lib\angular.js" />
     <Content Include="Scripts\Lib\angular.min.js" />
     <Content Include="Scripts\Angular\Apps\Default\app.js" />
@@ -286,6 +298,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Sections\boxFour.html" />
+    <Content Include="Views\Sections\boxOne.html" />
+    <Content Include="Views\Sections\boxThree.html" />
+    <Content Include="Views\Sections\boxTwo.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -324,12 +340,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Offices\Index.cshtml" />
     <Content Include="Views\MyOffices\Index.cshtml" />
+    <Content Include="Views\HowTo\Index.cshtml" />
+    <Content Include="Views\Offices\GetOfficePage.cshtml" />
+    <Content Include="Views\Offices\ShowSelectedOffice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Css\Views\Shared\" />
     <Folder Include="Scripts\Angular\Apps\Default\Controllers\" />
     <Folder Include="Views\api\" />
+    <Folder Include="Views\Master\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

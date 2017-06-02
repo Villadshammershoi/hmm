@@ -27,6 +27,8 @@ namespace hmm.Models
         [MaxLength(50)]
         public string Interest { get; set; }
 
+        public Guid? FK_User { get; set; }
+
 
         public class OfficeMap : EntityTypeConfiguration<Office>
         {

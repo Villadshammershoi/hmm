@@ -7,10 +7,51 @@
     background-size: cover;
     text-align: center;
     height: 100vh;
+    position: relative;
 }
 
-.cover-container .container h2 {
-    font-size: 45px;
+    .cover-container .container h2 {
+        font-size: 45px;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .cover-container .container h2:first-of-type {
+        margin-top: 75px;
+        margin-bottom: 0;
+    }
+
+    .cover-container .container h2:last-of-type {
+        margin-top: 0;
+    }
+
+    .cover-container h2 span {
     color: #fff;
-    margin-top: 75px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 0;
+    height: 50px;
+    overflow: hidden;
+    animation: type 3s steps(75, end) forwards;
+    animation-delay: 1s;
+    animation-direction: alternate;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.cover-container h2:nth-child(2) span {
+    animation-delay: 3.7s;
+}
+
+@keyframes type {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }

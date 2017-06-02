@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/Css/Views/HowTo")
+@Scripts.Render("~/bundles/Scripts/Apps/GlobalController")
+
+
+<div ng-controller="GlobalController">
+    <div class="how-to-section">
+        <h1>Get started with your offerend experience by clicking through the quick-guide bellow</h1>
+        <div class="how-to-container">
+            <div class="col-sm-5" ng-repeat="box in howToBox" ng-class="{'box-slide': index > $index + 0, 'box-hide': index > $index + 1}" ng-style="{left: 2 * $index + 'px', top: 2 * $index + 'px', 'z-index': (howToBox.length + $index)}" style="background-color:">
+                <ul class="list-unstyled">
+                    <li ng-repeat="value in box.templateUrl">
+                        <div>
+                            {{value.pages}}
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <script type="text/ng-template" id="sectiona.html">
+                <div class="slide">
+                    <h2>test slider</h2>
+                </div>
+            </script>
+            <script type="text/ng-template" id="sectionb.html">
+                <div class="slide">
+                    <h2>test slider</h2>
+                </div>
+            </script>
+        </div>
+    </div>
+    <div class="pages">
+        <button type="button" class="btn btn-lg btn-primary" ng-click="index = index > 1 ? index - 1 : 1">Previous</button>
+        <button type="button" class="btn btn-lg btn-primary" ng-click="index = index < howToBox.length ? index + 1 : howToBox.length">Next</button>
+    </div>
+</div>

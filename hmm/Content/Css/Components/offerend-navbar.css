@@ -6,13 +6,13 @@
     color: #fff;
     font-size: 50px;
     text-decoration: none;
-    line-height: 60px
+    line-height: 60px;
 }
 
-    .offerend-logo:hover {
-        text-decoration: none;
-        color: #fff;
-    }
+.offerend-logo:hover, .offerend-logo:focus {
+    text-decoration: none;
+    color: #fff;
+}
 
 .navbar-check:checked ~ .offerend-layout {
     overflow: hidden;
@@ -56,7 +56,8 @@
 }
 
 .navbar-check,
-.login-check {
+.login-check,
+.userbox-check {
     display: none;
 }
 
@@ -185,8 +186,6 @@
             transform: translateX(0px) translateY(1px) rotate(45deg);
         }
 
-
-
     .navbar-check:checked ~ .offerend-navbar {
         width: 50%;
         top: 60px;
@@ -314,24 +313,24 @@
     transition: opacity 0.6s 0s, visibility 0s 0s;
 }
 
-.login-check + label {
+.login-check + label,
+.userbox-check + label {
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     font-size: 24px;
-    float: left;
     margin-right: 15px;
-    line-height: 50px;
+    line-height: 60px;
+    margin-bottom: 0;
     cursor: pointer;
     margin-right: 40px;
-    line-height: 55px;
 }
 
-    .login-check + label:before {
+    .login-check + label:before,
+    .userbox-check + label:before {
         font-family: 'offerend';
         font-size: 40px;
         float: left;
         margin-right: 15px;
-        line-height: 50px;
     }
 
 .login-check:checked ~ .offerend-login {
@@ -339,6 +338,89 @@
     top: 60px;
     right: 0;
 }
+
+
+
+/*LOGGED IN*/
+
+
+/*TOOLTIP START*/
+.tooltip-inner {
+    background-color: #fff;
+    color: #18b2a9;
+    text-align: left;
+    padding: 0;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: #fff;
+}
+
+.tooltip.in {
+    opacity: 1;
+}
+/*TOOLTIP END*/
+
+
+
+.userbox-section {
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+    width: 190px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 0px;
+    background-color: #fff;
+    transition: .4s ease-in-out;
+    position: absolute;
+    top: 100%;
+    right: 55%;
+    z-index: 55;
+}
+
+    .userbox-section:before {
+        content: "\A";
+        border-style: solid;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid #fff;
+        position: absolute;
+        left: 100%;
+        margin-left: -24px;
+        top: -24px;
+    }
+
+.userbox-check + label {
+    margin-right: 15px;
+}
+
+.userbox-check:checked ~ .userbox-section {
+    display: block;
+}
+
+.userbox-section hr {
+    background-color: #146762;
+    height: 2px;
+    display: block;
+    margin: 0;
+}
+
+.userbox-header {
+    font-size: 24px;
+    color: #18b2a9;
+    padding: 0px 0px 17px 0px;
+    text-align: center;
+    padding: 10px;
+}
+
+.userbox-body {
+    padding: 10px;
+}
+
 
 @media screen and (max-width: 991px) {
     .offerend-navbar ul li {
@@ -362,5 +444,17 @@
 
     .login-check:checked ~ .offerend-login {
         width: 100%;
+    }
+
+    .login-check + label {
+        margin-right: 20px;
+    }
+
+        .login-check + label span {
+            display: none;
+        }
+
+    .offerend-logo:before {
+        font-size: 32px;
     }
 }

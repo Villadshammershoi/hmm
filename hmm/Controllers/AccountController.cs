@@ -54,7 +54,7 @@ namespace hmm.Controllers
 
 
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : MasterController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -107,29 +107,31 @@ namespace hmm.Controllers
         [HttpPost]
         [AllowAnonymous]
         [AntiForgeryValidate]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public string Login(LoginViewModel model, string returnUrl)
         {
+            KeyValuePair<bool,string> res;
             if (!ModelState.IsValid)
             {
-                return View(model);
-            }
+                res = new KeyValuePair<bool, string>(true, "You are now logged in!");
+            }else { 
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, false, shouldLockout: false);
+            var result = SignInManager.PasswordSignInAsync(model.UserName, model.Password, false, shouldLockout: false).Result;
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    res = new KeyValuePair<bool, string>(true, "You are now logged in!");
+                    break;
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl});
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    res = new KeyValuePair<bool, string>(false, "Your Username or Password is incorrect. Please check your credentials");
+                    break;
             }
+            }
+            return Newtonsoft.Json.JsonConvert.SerializeObject(res);
         }
 
         //
@@ -223,7 +225,6 @@ namespace hmm.Controllers
             // If we got this far, something failed, redisplay form
             return Json(new response() { Success = false, ValidationMessage = "Something went wrong, please check your credentials" });
         }
-
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -440,8 +441,8 @@ namespace hmm.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        [AntiForgeryValidate]
+        public ActionResult LogOff(LoginViewModel model, string returnUrl)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");

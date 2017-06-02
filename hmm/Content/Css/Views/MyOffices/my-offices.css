@@ -1,3 +1,14 @@
 ﻿.offerend-create-office-view {
     position: relative;
+    margin-top: 75px;
 }
+
+.office-display-section {
+    position: relative;
+}
+
+    .office-display-section .btn-primary {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }

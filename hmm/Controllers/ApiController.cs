@@ -8,7 +8,7 @@ using System.Web.Mvc;
 namespace hmm.Controllers
 {
     
-    public class ApiController : Controller
+    public class ApiController : MasterController
     {
         // GET: api
         public ActionResult Index()

@@ -11,7 +11,7 @@ using hmm.Models;
 namespace hmm.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : MasterController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

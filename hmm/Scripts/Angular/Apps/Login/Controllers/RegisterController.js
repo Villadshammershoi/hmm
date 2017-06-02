@@ -1,14 +1,16 @@
 ﻿(function (angular) {
     var app = angular.module('offerend.login');
-    app.controller('RegisterController', ['$scope', '$uibModal', '$http', '$location', '$timeout', function ($scope, $uibModal, $http, $location, $timeout, ngProgress) {
+    app.controller('RegisterController', ['$scope', '$uibModal', '$http', '$timeout', function ($scope, $uibModal, $http, $timeout) {
         $scope.createAccount = { username: "", password: "", confirmPassword: "", email: "", confirmEmail: "" };
         $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
         $scope.passwordFormat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-
+        $scope.offerendRegisterForm = {};
         $scope.loading = false;
 
         var $ctrl = this;
         $ctrl.animationsEnabled = true;
+
+        var vm = this;
 
         $scope.form = 1;
 
@@ -26,17 +28,18 @@
                             controller: 'ModalInstanceController',
                             controllerAs: '$ctrl',
                         });
+
                         $scope.createAccount = {};
-                        $scope.offerendRegisterForm.$setPristine();
+                        offerendRegisterForm.$setPristine();
+                        offerendRegisterForm = {};
                     }, function (response) {
                         $scope.loading = false;
                     }).finally(function () {
-                        // called no matter success or failure
-                        
+
                     });
             }
         };
-    }])
+    }]);
 
     app.controller('ModalInstanceController', ['$uibModalInstance', function ($uibModalInstance) {
         var $ctrl = this;

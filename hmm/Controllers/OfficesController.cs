@@ -7,10 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.Identity;
 
 namespace hmm.Controllers
 {
-    public class OfficesController : Controller
+    public class OfficesController : MasterController
     {
         // GET: Offices
         public ActionResult Index()
@@ -22,10 +23,11 @@ namespace hmm.Controllers
         {
             var db = new DataContext();
             var office = db.Office.Where(t => t.Id == id).FirstOrDefault();
-            if(office != null)
+            if (office != null)
             {
                 return office;
-            }else
+            }
+            else
             {
                 return new Office();
             }
@@ -35,30 +37,60 @@ namespace hmm.Controllers
         [HttpPost]
         public void CreateOrUpdateOffice(string stringOffice)
         {
-            var db = new DataContext();
-            var office = Newtonsoft.Json.JsonConvert.DeserializeObject<Office>(stringOffice);
+            var currentUser = User.Identity.GetUserId();
+            if (currentUser != null)
+            {
+                var db = new DataContext();
+                var office = Newtonsoft.Json.JsonConvert.DeserializeObject<Office>(stringOffice);
 
-            if (office.Id != 0)
-            {
-                var dbOffice = GetOffice(office.Id);
-                if(dbOffice.Id != 0)
+                office.FK_User = new Guid(currentUser);
+
+                if (office.Id != 0)
                 {
-                    db.Entry(dbOffice).CurrentValues.SetValues(office);
+                    var dbOffice = GetOffice(office.Id);
+                    if (dbOffice.Id != 0)
+                    {
+                        db.Entry(dbOffice).CurrentValues.SetValues(office);
+                    }
                 }
-            }else
-            {
-                db.Office.Add(office);
+                else
+                {
+                    db.Office.Add(office);
+                }
+                db.SaveChanges();
             }
-            db.SaveChanges();
         }
 
 
         [HttpGet]
-        public JsonResult GetOffices()
+        public JsonResult GetOffices(bool? ShowUsersOnly = false)
+        {
+            var currentUser = User.Identity.GetUserId();
+            if (ShowUsersOnly.Value ? currentUser != null : true)
+            {
+                var db = new DataContext();
+                var offices = db.Office.Where(t => ShowUsersOnly.Value ? t.FK_User == new Guid(currentUser) : true).ToList();
+                return new JsonResult { Data = offices, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            return new JsonResult();
+        }
+
+        [HttpGet]
+        public JsonResult GetOfficePage(int? id)
         {
             var db = new DataContext();
-            var offices = db.Office.ToList();
-            return new JsonResult { Data = offices, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            var office = db.Office.Where(t => t.Id == id).FirstOrDefault();
+            if (office == null)
+            {
+                office = new Office();
+            }
+            return new JsonResult { Data = office, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+        }
+
+        public ActionResult ShowSelectedOffice()
+        {
+            return View();
         }
     }
 }

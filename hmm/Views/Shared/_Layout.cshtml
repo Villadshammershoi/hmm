@@ -2,6 +2,11 @@
 <html ng-app="offerend">
 <head>
     @using hmm.Controllers
+    @{
+        var controller = ViewContext.Controller as hmm.Controllers.MasterController;
+    }
+
+
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +22,7 @@
     "~/bundles/Scripts/Apps/Default/Directives/PasswordMatch",
     "~/bundles/Scripts/Apps/Default/Directives/LoadingSpinner",
     "~/bundles/Scripts/Apps/Default/Directives/CheckUsername",
+    "~/bundles/Scripts/Apps/Default/Directives/AngularTooltip",
 
     "~/bundles/Scripts/Apps/Default/Services/LoginService",
 
@@ -29,143 +35,188 @@
             <div class="navbar navbar-inverse navbar-fixed-top">
                 <input class="navbar-check" type="checkbox" name="navbarCheck" id="navbarCheck" />
                 <label for="navbarCheck" class="navbar-check-label" ng-model="checkVal"><span></span></label>
-                <div class="navbar-overlay">
-
-                </div>
+                <div class="navbar-overlay"></div>
                 <div class="offerend-navbar">
                     <ul class="list-unstyled text-center">
-                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "Home", new { area = ""})"><div class="offerend-home">Home</div></a></li>
-                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "Offices", new { area = "" })"><div class="offerend-location">Explore offices</div></a></li>
-                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "MyOffices", new { area = "" })"><div class="offerend-office">My offices</div></a></li>
-                        <li class="col-md-6 col-xs-12"><a href=""><div class="offerend-question">How to</div></a></li>
+                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "Home", new { @area = ""})"><div class="offerend-home">Home</div></a></li>
+                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "Offices", new { @area = "" })"><div class="offerend-location">Explore offices</div></a></li>
+                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "MyOffices", new { @area = "" })"><div class="offerend-office">My offices</div></a></li>
+                        <li class="col-md-6 col-xs-12"><a href="@Url.Action("Index", "Howto", new { @area= "" })"><div class="offerend-question">How to</div></a></li>
                     </ul>
                     <span class="offerend-logo"></span>
                 </div>
 
                 <p class="pull-right"></p>
-                <input class="login-check" type="checkbox" name="navbarCheck" id="loginCheck" />
-                <label for="loginCheck" class="navbar-login-label pull-right offerend-user">login or register</label>
-                <div class="login-overlay">
-                </div>
-                <div class="offerend-login" ng-controller="LoginController" @Html.RequestVerificationToken()>
-                    <div ng-cloak ng-show="form == 1">
-                        <form method="post" ng-model="offerendLoginForm" name="offerendLoginForm" id="offerendLoginForm" role="form" ng-submit="loginAccount(offerendLoginForm.$valid)" novalidate>
 
-                            <h2 class="text-center">Log in to your account</h2>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        @Html.Label("userName", "Name")
-                                        <input class="form-control" ng-model="loginData.UserName" type="text" ng-minlength=6 name="userName" required />
-                                        <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.userName.$error.required">Username is required</div>
-                                        <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.userName.$error.minlength">Username must be at least 6 characters</div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.Label("password", "Password")
-                                        <input class="form-control" ng-model="loginData.Password" type="password" name="password" ng-minlength=6 required />
-                                        <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.password.$error.required">Password is required</div>
-                                        <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.password.$error.pattern">Password must be at least 6 characters, contain 1 capital letter, 1 number and 1 special character</div>
-                                    </div>
-                                    @*<div class="form-group">
-                                            @Html.Label("confirmPassword", "Confirm Password")
-                                            <input class="form-control" ng-model="loginData.confirmPassword" type="password" name="confirmPassword" required />
-                                            <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.confirmPassword.$error.matcher">
-                                                <div ng-show="offerendLoginForm.$submitted && offerendLoginForm.confirmPassword.$error.matcher">Passwords don't match</div>
+                <div class="offerend-login-section" ng-controller="LoginController as $ctrl">
+
+                    @if (controller.isLoggedIn())
+                    {
+                        <div class="pull-right" style="position: relative; display:inline-block">
+                            <input class="userbox-check" type="checkbox" name="navbarCheck" id="userboxCheck" />
+                            <label for="userboxCheck" class="navbar-userbox-label pull-right offerend-user"></label>
+
+                            <div class="userbox-section text-center">
+                                <div class="userbox-header">Hello @controller.displayUser()</div>
+                                <hr />
+                                <div class="userbox-body">
+                                    <div class="btn btn-sm btn-warning" ng-click="logOut()">Log out</div>
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("Index", "MyOffices")">Go to offices</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <input class="login-check" type="checkbox" name="navbarCheck" id="loginCheck" />
+                        <label for="loginCheck" class="navbar-login-label pull-right offerend-user"><span>login or register</span></label>
+
+                        <div class="login-overlay">
+
+                        </div>
+                        <div class="offerend-login" @Html.RequestVerificationToken()>
+                            <div ng-cloak ng-show="form == 1">
+                                <form method="post" ng-model="offerendLoginForm" name="offerendLoginForm" id="offerendLoginForm" role="form" ng-submit="loginAccount(offerendLoginForm.$valid)" novalidate>
+                                    <h2 class="text-center">Log in to your account</h2>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                @Html.Label("userName", "Name")
+                                                <input class="form-control" ng-model="loginData.UserName" type="text" ng-minlength=6 name="userName" required />
+                                                <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.userName.$error.required">Username is required</div>
+                                                <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.userName.$error.minlength">Username must be at least 6 characters</div>
                                             </div>
-                                        </div>*@
-                                    <div class="form-group">
-                                        <button class="btn btn-lg btn-primary" type="submit" name="login">Log in</button>
-                                    </div>
-                                    <div class="form-group">
-                                        <a ng-click="form = 2" href="">Create an Offerend account</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-
-                    <div ng-cloak ng-show="form == 2">
-                        <form method="post" ng-model="offerendRegisterForm" name="offerendRegisterForm" id="offerendRegisterForm" role="form" ng-submit="createAccount(offerendRegisterForm.$valid)" novalidate>
-                            <h2 class="text-center">Create an account</h2>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group" ng-class="{true: 'error'}[submitted && offerendRegisterForm.userName.$invalid]">
-                                        @Html.Label("userName", "Name")
-                                        <input ng-model="createAccount.username" class="form-control" type="text" name="userName" username-available ng-minlength=6 required ng-model-options="{updateOn: 'blur'}" />
-                                        <div>
-                                            <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.userName.$error.required">Username is required</div>
-                                            <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.userName.$error.minlength">Username must be at least 6 characters</div>
-                                            <div class="alert alert-danger" ng-show="offerendRegisterForm.userName.$error.usernameAvailableValidator">Username already taken</div>
-                                            <div ng-show="offerendRegisterForm.$pending.usernameExists">Checking username availability...</div>
-                                            <div ng-show="offerendRegisterForm.userName.$error.usernameExists">Username already exists</div>
+                                            <div class="form-group">
+                                                @Html.Label("password", "Password")
+                                                <input class="form-control" ng-model="loginData.Password" type="password" name="password" ng-minlength=6 required />
+                                                <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.password.$error.required">Password is required</div>
+                                                <div class="alert alert-danger" ng-show="offerendLoginForm.$submitted && offerendLoginForm.password.$error.pattern">Password must be at least 6 characters, contain 1 capital letter, 1 number and 1 special character</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-lg btn-primary" type="submit" name="login">Log in</button>
+                                                <div class="alert alert-danger" ng-model="wrongLoginCredentials">{{wrongLoginCredentials}}</div>
+                                                <div class="offerend-loading-container" ng-model="loading" ng-if="loading == true">
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <a ng-click="form = 2" href="">Create an Offerend account</a>
+                                                <div ng-model="invalidLogin" ng-show="model.Password !== null && model.UserName !== null"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        @Html.Label("password", "Password")
-                                        <input ng-model="createAccount.password" class="form-control" type="password" name="password" ng-pattern="passwordFormat" ng-minlength=6 required />
-                                        <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.password.$error.required">Password is required</div>
-                                        <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.password.$error.pattern">Password must be at least 6 characters, contain 1 capital letter, 1 number and 1 special character</div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.Label("confirmPassword", "Confirm Password")
-                                        <input type="password" name="confirmPassword" class="form-control" ng-model="createAccount.confirmPassword" matcher="{{createAccount.password}}" required />
-                                        <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.confirmPassword.$error.matcher">
-                                            <div ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.confirmPassword.$error.matcher">Passwords don't match</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.Label("email", "E-mail")
-                                        <input ng-model="createAccount.email" class="form-control" type="email" name="email" ng-pattern="emailFormat" required />
-                                        <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.email.$error.pattern">Invalid email</div>
-                                        <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.email.$error.required">Email is required</div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.Label("confirmEmail", "confirm E-mail")
-                                        <input ng-model="createAccount.confirmEmail" class="form-control" type="email" name="confirmEmail" required matcher="{{createAccount.email}}" />
+                                </form>
 
-                                        <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.confirmEmail.$error.matcher">Emails don't match</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="btn btn-lg btn-primary" type="submit" value="Sign up" name="signup" />
-                                        <div class="offerend-loading-container" ng-model="loading" ng-if="loading == true">
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                            <div class="offerend-loading-ball"></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <a ng-click="form = 1" href="">Back to log in</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div>
-                        <script type="text/ng-template" id="ModalContent.html">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="modal-title">Account successfully created</h3>
-                            </div>
-                            <div class="modal-body" id="modal-body">
-                                <h2>Thank you for registering an Offerend account!</h2>
 
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-                                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+
+                            <div ng-cloak ng-show="form == 2">
+                                <form method="post" ng-model="offerendRegisterForm" name="offerendRegisterForm" id="offerendRegisterForm" role="form" ng-submit="createAccount(offerendRegisterForm.$valid)" novalidate>
+                                    <h2 class="text-center">Create an account</h2>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group" ng-class="{true: 'error'}[submitted && offerendRegisterForm.userName.$invalid]">
+                                                @Html.Label("userName", "Name")
+                                                <input ng-model="createAccount.username" class="form-control" type="text" name="userName" username-available ng-minlength=6 required ng-model-options="{updateOn: 'blur'}" />
+                                                <div>
+                                                    <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.userName.$error.required">Username is required</div>
+                                                    <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.userName.$error.minlength">Username must be at least 6 characters</div>
+                                                    <div class="alert alert-danger" ng-show="offerendRegisterForm.userName.$error.usernameAvailableValidator">Username already taken</div>
+                                                    <div ng-show="offerendRegisterForm.$pending.usernameExists">Checking username availability...</div>
+                                                    <div ng-show="offerendRegisterForm.userName.$error.usernameExists">Username already exists</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("password", "Password")
+                                                <input ng-model="createAccount.password" class="form-control" type="password" name="password" ng-pattern="passwordFormat" ng-minlength=6 required />
+                                                <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.password.$error.required">Password is required</div>
+                                                <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.password.$error.pattern">Password must be at least 6 characters, contain 1 capital letter, 1 number and 1 special character</div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("confirmPassword", "Confirm Password")
+                                                <input type="password" name="confirmPassword" class="form-control" ng-model="createAccount.confirmPassword" matcher="{{createAccount.password}}" required />
+                                                <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.confirmPassword.$error.matcher">
+                                                    <div ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.confirmPassword.$error.matcher">Passwords don't match</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("email", "E-mail")
+                                                <input ng-model="createAccount.email" class="form-control" type="email" name="email" ng-pattern="emailFormat" required />
+                                                <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.email.$error.pattern">Invalid email</div>
+                                                <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.email.$error.required">Email is required</div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("confirmEmail", "confirm E-mail")
+                                                <input ng-model="createAccount.confirmEmail" class="form-control" type="email" name="confirmEmail" required matcher="{{createAccount.email}}" />
+
+                                                <div class="alert alert-danger" ng-show="offerendRegisterForm.$submitted && offerendRegisterForm.confirmEmail.$error.matcher">Emails don't match</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="btn btn-lg btn-primary" type="submit" value="Sign up" name="signup" />
+                                                <div class="offerend-loading-container" ng-model="loading" ng-if="loading == true">
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                    <div class="offerend-loading-ball"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <a ng-click="form = 1" href="">Back to log in</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </script>
-                        <div>{{username}}</div>
-                    </div>
+                            <div>
+                                <script type="text/ng-template" id="ModalContent.html">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="modal-title">Account successfully created</h3>
+                                    </div>
+                                    <div class="modal-body" id="modal-body">
+                                        <h2>Thank you for registering an Offerend account!</h2>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+                                        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                                    </div>
+                                </script>
+
+                            </div>
+
+                            <div>
+                                <script type="text/ng-template" id="LoggedInModal.html">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="modal-title">Logging in...</h3>
+                                    </div>
+                                    <div class="modal-body" id="modal-body">
+                                        <h2>You are now logged in!</h2>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+                                    </div>
+                                </script>
+
+                            </div>
+                        </div>
+                    }
                 </div>
 
-                <div class="container">
-                        <a class="offerend-logo" href="@Url.Action("Index", "Home")"></a>
+
+                <div class="container text-center">
+                    <a class="offerend-logo" href="@Url.Action("Index", "Home", new { @area = "" })"></a>
                 </div>
             </div>
         </div>

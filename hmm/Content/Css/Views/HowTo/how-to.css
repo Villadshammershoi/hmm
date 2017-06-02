@@ -1,0 +1,57 @@
+﻿body {
+    overflow: hidden;
+}
+
+.how-to-section {
+    height: 100vh;
+    background: url(/Content/images/howto-cover.png) no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.how-to-section h1 {
+    transition: 2s all;
+    opacity: 1;
+    padding-top: 75px;
+    margin-bottom: 55px;
+    margin-top: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.how-to-container {
+    position: relative;
+}
+
+.col-sm-5 {
+    left: -100% !important;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: #18b2a9;
+    border-radius: 6px;
+    border: 1px solid #146762;
+    color: #fff;
+    text-align: center;
+    transition: .4s all ease-in-out;
+}
+
+.pages {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    margin-left: -100px;
+}
+
+.box-slide {
+    left: 50% !important;
+    margin-left: -200px;
+    opacity: 1 !important;
+    transition: .4s all ease-in-out;
+}
+
+.box-hide {
+    left: 100% !important;
+    margin-left: 100%;
+    
+}
